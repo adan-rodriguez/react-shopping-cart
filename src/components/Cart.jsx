@@ -24,9 +24,13 @@ export default function Cart() {
             />
           ))}
         </ul>
-        <button onClick={clearCart}>
-          <ClearCartIcon />
-        </button>
+        {cart.length !== 0 ? (
+          <button className="clear-cart-button" onClick={clearCart}>
+            <ClearCartIcon />
+          </button>
+        ) : (
+          <p>El carrito está vacío</p>
+        )}
       </div>
     </>
   );
