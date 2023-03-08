@@ -1,12 +1,13 @@
 import Products from "./components/Products";
 import Header from "./components/Header";
 import { useFilters } from "./hooks/useFilters";
-import { getProducts } from "./services/products";
 import Cart from "./components/Cart";
 import { CartProvider } from "./contexts/cart";
+import useProducts from "./hooks/useProducts";
 
 function App() {
-  const products = getProducts();
+  const { products } = useProducts();
+
   const { filterProducts } = useFilters();
 
   const filteredProducts = filterProducts(products);
