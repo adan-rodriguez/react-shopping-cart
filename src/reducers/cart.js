@@ -29,10 +29,11 @@ export const cartReducer = (state, action) => {
       return newState;
     }
 
-    case CART_ACTION_TYPES.REMOVE_FROM_CART:
+    case CART_ACTION_TYPES.REMOVE_FROM_CART: {
       const newState = state.filter((item) => item.id !== actionPayload.id);
       updateLocalStorage(newState);
       return newState;
+    }
 
     case CART_ACTION_TYPES.CLEAR_CART:
       updateLocalStorage([]);
