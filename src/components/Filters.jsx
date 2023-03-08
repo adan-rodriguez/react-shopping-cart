@@ -1,7 +1,9 @@
 import { useId } from "react";
+import useCategories from "../hooks/useCategories";
 import { useFilters } from "../hooks/useFilters";
 
 export default function Filters() {
+  const { categories } = useCategories();
   const { filters, setFilters } = useFilters();
 
   const minPriceFilterId = useId();
@@ -44,8 +46,13 @@ export default function Filters() {
           onChange={handleChangeCategory}
         >
           <option value="all">Todas</option>
-          <option value="laptops">Laptops</option>
-          <option value="smartphones">Celulares</option>
+          {categories.map((category) => (
+            <option value={category} key={category}>
+              {`${category[0].toUpperCase()}${category.slice(1)}`}
+            </option>
+          ))}
+          {/* <option value="laptops">Laptops</option>
+          <option value="smartphones">Celulares</option> */}
         </select>
       </div>
     </div>
