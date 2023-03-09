@@ -12,25 +12,38 @@ export const cartReducer = (state, action) => {
 
   switch (actionType) {
     case CART_ACTION_TYPES.ADD_TO_CART: {
-      const productInCartIndex = state.findIndex(
-        (item) => item.id === actionPayload.id
-      );
-
-      if (productInCartIndex >= 0) {
-        // const newState = structuredClone(state);
-        const newState = [...state];
-        newState[productInCartIndex].quantity += 1;
-        updateLocalStorage(newState);
-        return newState;
-      }
-
       const newState = [...state, { ...actionPayload, quantity: 1 }];
       updateLocalStorage(newState);
       return newState;
     }
 
+    case CART_ACTION_TYPES.INCREASE_QUANTITY: {
+      const productInCartIndex = state.findIndex(
+        (item) => item.id === actionPayload
+      );
+
+      // const newState = structuredClone(state);
+      const newState = [...state];
+      newState[productInCartIndex].quantity += 1;
+      updateLocalStorage(newState);
+      return newState;
+    }
+
+    case CART_ACTION_TYPES.DECREASE_QUANTITY: {
+      const productInCartIndex = state.findIndex(
+        (item) => item.id === actionPayload
+      );
+
+      const newState = [...state];
+      if (newState[productInCartIndex].quantity > 1) {
+        newState[productInCartIndex].quantity -= 1;
+      }
+      updateLocalStorage(newState);
+      return newState;
+    }
+
     case CART_ACTION_TYPES.REMOVE_FROM_CART: {
-      const newState = state.filter((item) => item.id !== actionPayload.id);
+      const newState = state.filter((item) => item.id !== actionPayload);
       updateLocalStorage(newState);
       return newState;
     }

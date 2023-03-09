@@ -18,9 +18,9 @@ export default function ProductItem({ product }) {
             backgroundColor: isProductInCart ? "red" : "#09f",
           }}
           onClick={() =>
-            isProductInCart ? removeFromCart(product) : addToCart(product)
+            isProductInCart ? removeFromCart(product.id) : addToCart(product)
           }
-          title="Agregar al carrito"
+          title={isProductInCart ? "Sacar del carrito" : "Agregar al carrito"}
         >
           {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
         </button>

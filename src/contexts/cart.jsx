@@ -4,11 +4,25 @@ import { useCartReducer } from "../hooks/useCartReducer";
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const { state, addToCart, clearCart, removeFromCart } = useCartReducer();
+  const {
+    state,
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+    removeFromCart,
+  } = useCartReducer();
 
   return (
     <CartContext.Provider
-      value={{ cart: state, addToCart, clearCart, removeFromCart }}
+      value={{
+        cart: state,
+        addToCart,
+        increaseQuantity,
+        decreaseQuantity,
+        clearCart,
+        removeFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>

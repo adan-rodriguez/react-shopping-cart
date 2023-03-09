@@ -5,7 +5,7 @@ import { CartIcon, ClearCartIcon } from "./Icons";
 
 export default function Cart() {
   const cartCheckboxId = useId();
-  const { cart, clearCart, addToCart } = useCart();
+  const { cart, clearCart } = useCart();
 
   return (
     <>
@@ -17,15 +17,11 @@ export default function Cart() {
       <div className="cart">
         <ul>
           {cart.map((item) => (
-            <CartItem
-              key={item.id}
-              {...item}
-              addToCart={() => addToCart(item)}
-            />
+            <CartItem key={item.id} {...item} />
           ))}
         </ul>
         {cart.length !== 0 ? (
-          <button className="clear-cart-button" onClick={clearCart}>
+          <button onClick={clearCart} title="Vaciar el carrito">
             <ClearCartIcon />
           </button>
         ) : (

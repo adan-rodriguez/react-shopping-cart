@@ -8,10 +8,23 @@ export function useCartReducer() {
   const addToCart = (product) =>
     dispatch({ type: CART_ACTION_TYPES.ADD_TO_CART, payload: product });
 
-  const removeFromCart = (product) =>
-    dispatch({ type: CART_ACTION_TYPES.REMOVE_FROM_CART, payload: product });
+  const increaseQuantity = (id) =>
+    dispatch({ type: CART_ACTION_TYPES.INCREASE_QUANTITY, payload: id });
+
+  const decreaseQuantity = (id) =>
+    dispatch({ type: CART_ACTION_TYPES.DECREASE_QUANTITY, payload: id });
+
+  const removeFromCart = (id) =>
+    dispatch({ type: CART_ACTION_TYPES.REMOVE_FROM_CART, payload: id });
 
   const clearCart = () => dispatch({ type: CART_ACTION_TYPES.CLEAR_CART });
 
-  return { state, addToCart, removeFromCart, clearCart };
+  return {
+    state,
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+    clearCart,
+  };
 }

@@ -93,6 +93,8 @@ main {
 }
 
 .cart li {
+  position: relative;
+  font-size: 10px;
   border-bottom: 1px solid #444;
   padding: 10px 0;
   display: flex;
@@ -107,9 +109,17 @@ main {
 }
 
 .quantity-cart button {
-  padding: 0.5rem;
+  width: 20px;
+  height: 20px;
   background-color: #09f;
   cursor: pointer;
+}
+
+.cart li button[title="Sacar del carrito"] {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 10px;
 }
 
 .cart-button {
@@ -138,7 +148,7 @@ main {
   display: block;
 }
 
-.clear-cart-button {
+button[title="Vaciar el carrito"] {
   display: block;
   margin: auto;
   margin-top: 10px;
